@@ -24,7 +24,6 @@ void led_update()
     P1OUT &= (0xff^LEDS) | ledFlags;
     P1OUT |= ledFlags;
     led_changed = 0;
-    
 }
 
 void red_on(int on)
@@ -32,22 +31,19 @@ void red_on(int on)
   if(on)
     {
       P1OUT |= LED_RED;
-      red_on = 1;
+     
     }
   else
     P1OUT &= ~LED_RED;
-    red_on = 0;
-}
+ }
 
 void green_on(int on)
 {
   if(on)
     {
       P1OUT |= LED_GREEN;
-      green_on = 1;
     } else {
-      P1OUT &= ~LED_GREEN;
-      green_on = 0;
+    P1OUT &= ~LED_GREEN;
   }
 }
  
@@ -62,8 +58,6 @@ void leds_on(int on)
   
 void leds_off()
 {
-  red_on = 0;
-  green_on = 0;
   led_changed = 1;
   led_update();
   
