@@ -38,8 +38,8 @@ void play_song_2(){
   static char curr_note = 0;
   static int  ledBool =0;
   // All notes of song, 0s are for break in between notes
-  int notes[40] = {}; 
-  int n = 40;
+  int notes[7] = {C4, A4, G7, G7, C4,A0, G7, G7}; 
+  int n = 7 ;
   if (curr_note < n){
       buzzer_set_period(notes[curr_note]);
       curr_note++;
