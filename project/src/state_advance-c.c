@@ -16,7 +16,7 @@ void state_advance(switchSM)		/* alternate between toggling red & green */
       btn_two();
       break;
     case 2:
-      btn_tree();
+      btn_three();
       break;
     case 3:
       btn_four();
