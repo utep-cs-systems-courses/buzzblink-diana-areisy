@@ -3,7 +3,7 @@
 #include "led.h"
 #include "buzzer.h"
 #include "switches.h"
-#include "stateMachines.h"
+#include "state_machines.h"
 #include "state_advance.h"
 
 void state_advance(switchSM)		/* alternate between toggling red & green */
