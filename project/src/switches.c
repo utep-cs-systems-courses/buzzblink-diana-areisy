@@ -3,6 +3,9 @@
 #include "led.h"
 #include "buzzer.h"
 
+char switch_state_changed;
+short switchSM;
+
 static char switch_update_interrupt_sense()
 {
   char p2val = P2IN;
