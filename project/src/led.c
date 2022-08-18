@@ -69,12 +69,12 @@ void leds_off()
    switch(on)
      {
      case 0:
-       red_on(1);
-       green_on(0);
+       r_on(1);
+       g_on(0);
        break;
      case 1:
-       red_on(0);
-       green_on(1);
+       r_on(0);
+       g_on(1);
        break;
      default:
        leds_on(0);
