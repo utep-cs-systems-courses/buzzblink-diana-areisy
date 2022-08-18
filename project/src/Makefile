@@ -1,35 +1,28 @@
 # makfile configuration
-COMMON_OBJECTS  = main.o
+COMMON_OBJECTS  = main.o led.o buzzer.o interrupt_handler.o switches.o state_machines.o wdInterruptHandler.o
 CPU             = msp430g2553
-CFLAGS          = -mmcu=${CPU} -I../h -L/opt/ti/msp430_gcc/include
-LDFLAGS         = -L/opt/ti/msp430_gcc/include
+CFLAGS          = -mmcu=${CPU} -I../h
+LDFLAGS		= -L/opt/ti/msp430_gcc/include
 
 #switch the compiler (for the internal make rules)
 CC              = msp430-elf-gcc
 AS              = msp430-elf-as
 
-all: toy.elf 
+all: button-c.elf button-s.elf 
 
 #additional rules for files
-toy.elf: ${COMMON_OBJECTS} buzzer.o led.o switches.o state_machines.o  wdInterruptHandler.o interrupt_handler.o
-	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ ../lib/libTimer.a
+button-c.elf: ${COMMON_OBJECTS} state_advance-c.o ../lib/libTimer.a
+	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
+	
 
-load: toy.elf
-	msp430loader.sh $^
+button-s.elf: ${COMMON_OBJECTS} state_advance-s.o ../lib/libTimer.a
+	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
-clean: $^
-	rm -f *.o *.c~ *.h~ *~ *.c# *.elf
+load-c: button-c.elf
+	msp430loader.sh button-c.elf
 
+load-s: button-s.elf
+	msp430loader.sh button-s.elf
 
-
-main.o: buzzer.h led.h state_machines.h switches.h 
-
-buzzer.o: buzzer.h
-led.o: led.c led.h
-switches.o: led.h switches.h 
-
-dim_sequence.o: led.h state_machines.h
-state_machines.o: buzzer.h buzzer_notes.h led.h state_machines.h switches.h 
-
-wdInterruptHandler.o: switches.h  buzzer.h led.h state_machines.h
-interrupt_handler.o: switches.h
+clean:
+	rm -f *.o *.elf *~ *#

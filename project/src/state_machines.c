@@ -6,7 +6,7 @@
 #include "state_machines.h"
 
 // SWITCH 1
-void play_song_1()
+void btn_one()
 {
   static char curr_note = 0;
   static int  ledBool =0;
@@ -34,7 +34,7 @@ void play_song_1()
 }
 
 // switch 2
-void play_song_2(){
+void btn_two(){
   static char curr_note = 0;
   static int  ledBool =0;
   // All notes of song, 0s are for break in between notes
@@ -56,4 +56,18 @@ void play_song_2(){
   else {
     curr_note = 0;
   }
+}
+void btn_three(){
+  green_on ^= 1;
+  led_changed = 1;
+  led_update();
+  buzzer_set_period(7500);
+}
+
+void btn_four(){
+  red_on = 0;
+  green_on = 0;
+  led_changed = 1;
+  led_update();
+  buzzer_set_period(0);
 }

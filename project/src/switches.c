@@ -22,49 +22,22 @@ void switch_init()		/* setup switch */
   led_update();
 }
 
-unsigned short n_switch_down = 0;
 void switch_interrupt_handler()
 {
   char p2val = switch_update_interrupt_sense();
 
-  int prev1 = sw1_status;
-  int prev2 = sw2_status;
-  int prev3 = sw3_status;
-  int prev4 = sw4_status;
+  //Chech each button
+  char sw1_curr_stat = (p2val & SW1) ? 0 : 1; /* 0 when SW1 is up */
+  char sw2_curr_stat = (p2val & SW2) ? 0 : 1; /* 0 when SW2 is up */
+  char sw3_curr_stat = (p2val & SW3) ? 0 : 1; /* 0 when SW3 is up */
+  char sw4_curr_stat = (p2val & SW4) ? 0 : 1; /* 0 when SW4 is up */
+ 
 
-  // checks if button has been pressed
-  sw1_status = (p2val & SW1) ? 0 : 1;
-  sw2_status = (p2val & SW2) ? 0 : 1;
-  sw3_status = (p2val & SW3) ? 0 : 1;
-  sw4_status = (p2val & SW4) ? 0 : 1;
-
-  // switch selection and reset
-  if(prev1 != sw1_status && sw1_status)
-    {
-      sw1_press_state ^= 1;
-      sw2_press_state = 0;
-      sw3_press_state = 0;
-      sw4_press_state = 0;
-    }
-  else if(prev2 != sw2_status && sw2_status)
-    {
-      sw2_press_state ^= 1;
-      sw1_press_state = 0;
-      sw3_press_state = 0;
-      sw4_press_state = 0;
-    }
-  else if(prev3 != sw3_status && sw3_status)
-    {
-      sw3_press_state ^= 1;
-      sw1_press_state = 0;
-      sw2_press_state =0;
-      sw4_press_state = 0;
-    }
-  else if(prev4 != sw4_status && sw4_status)
-    {
-      sw4_press_state ^= 1;
-      sw1_press_state = 0;
-      sw2_press_state = 0;
-      sw3_press_state = 0;
-    }
+  if (sw1_curr_stat){switchSM = 0;}
+  else if(sw2_curr_stat){switchSM = 1;}
+  else if(sw3_curr_stat){switchSM = 2;}
+  else if(sw4_curr_stat){switchSM = 3;} 
+  switch_state_changed = 1;
+  state_advance(switchSM);
+  
 }

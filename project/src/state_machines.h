@@ -3,9 +3,10 @@
 
 
 
-void play_song_1();
-void play_song_2();
-void play_song_3();
+void btn_one();
+void btn_two();
+void btn_three();
+void btn_four();
 
 void red_dim_25();
 void red_dim_50();
