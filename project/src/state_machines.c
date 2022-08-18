@@ -11,7 +11,7 @@ void btn_one()
   static char curr_note = 0;
   static int  ledBool =0;
   // All notes of song, 0s are for break in between notes
-  int notes[6] = {G0,G0,A0,G0,C0 B0};
+  int notes[6] = {G0,G0,A0,G0,C0 B3};
   int n = 6;
 
   if (curr_note < n){
