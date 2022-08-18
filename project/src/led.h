@@ -7,11 +7,12 @@
 #define LEDS (BIT0 | BIT6)
 
 extern unsigned char led_changed;
+unsigned char red_on = 0, green_on = 0;
 
 void led_init();            //Initialize LEDs
 void led_update();          //Update LEDs
-void green_on(int on);      //Turn on/off green light
-void red_on(int on);        //Turn on/off red lights
+void g_on(int on);      //Turn on/off green light
+void r_on(int on);        //Turn on/off red lights
 void led_off();
 
 // These are boolean flags

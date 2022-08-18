@@ -6,6 +6,7 @@
 #include "state_machines.h"
 
 unsigned char led_changed = 0;
+unsigned char red_on = 0, green_on = 0;
 
 static char redVal[] = {0, LED_RED}, greenVal[] = {0, LED_GREEN};
 
@@ -24,8 +25,9 @@ void led_update()
     P1OUT |= ledFlags;
     led_changed = 0;
 }
+}
 
-void red_on(int on)
+void r_on(int on)
 {
   if(on)
     {
@@ -36,7 +38,7 @@ void red_on(int on)
     P1OUT &= ~LED_RED;
  }
 
-void green_on(int on)
+void g_on(int on)
 {
   if(on)
     {
