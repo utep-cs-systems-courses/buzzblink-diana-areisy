@@ -9,11 +9,12 @@
 extern unsigned char led_changed;
 extern unsigned char red_on, green_on;
 
-void led_init();            //Initialize LEDs
-void led_update();          //Update LEDs
+void led_init();        //Initialize LEDs
+void led_update();      //Update LEDs
 void g_on(int on);      //Turn on/off green light
-void r_on(int on);        //Turn on/off red lights
+void r_on(int on);      //Turn on/off red lights
 void led_off();
+void swap_leds(int on);
 
 // These are boolean flags
 extern unsigned char leds_changed, gree_led_state, red_led_state;

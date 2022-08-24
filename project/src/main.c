@@ -12,7 +12,6 @@ int main(void)
   switch_init();
   configureClocks(); /*setup master oscillator, CPU & peripheral clocks*/
 
-  
   enableWDTInterrupts(); /* enable periodic interrupt */
   or_sr(0x18); /* CPU off, GIE on */
 }

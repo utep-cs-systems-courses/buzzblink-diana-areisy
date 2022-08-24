@@ -3,7 +3,6 @@
 #include "buzzer.h"
 #include "led.h"
 
-
 void buzzer_init()
 {
   timerAUpmode();
@@ -18,3 +17,4 @@ void buzzer_set_period(short cycles)
   CCR0 = cycles;
   CCR1 = cycles >> 1;
 }
+

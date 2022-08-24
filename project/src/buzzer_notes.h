@@ -162,23 +162,23 @@
 
 
 // 7 OCTAVE
-#define C7 955
+#define C7  955
 #define C7_SHARP 901
 #define D7_FLAT 901
-#define D7 851
+#define D7  851
 #define D7_SHARP 803
 #define E7_FLAT 803
-#define E7 758
-#define F7 715
+#define E7  758
+#define F7  715
 #define F7_SHARP 675
 #define G7_FLAT 675
-#define G7 637
+#define G7  637
 #define G7_SHARP 601
 #define A7_FLAT 601
-#define A7 568
+#define A7  568
 #define A7_SHARP 536
 #define B7_FLAT 536
-#define B7 506
+#define B7  506
 
 
 

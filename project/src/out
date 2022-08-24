@@ -1,0 +1,25 @@
+rm -f *.o *.elf
+msp430-elf-gcc -mmcu=msp430g2553 -I../h   -c -o main.o main.c
+main.c: In function 'main':
+main.c:11:3: warning: implicit declaration of function 'buzzer_init'; did you mean 'led_init'? [-Wimplicit-function-declaration]
+   buzzer_init();
+   ^~~~~~~~~~~
+   led_init
+msp430-elf-gcc -mmcu=msp430g2553 -I../h   -c -o led.o led.c
+msp430-elf-gcc -mmcu=msp430g2553 -I../h   -c -o buzzer.o buzzer.c
+msp430-elf-gcc -mmcu=msp430g2553 -I../h   -c -o interrupt_handler.o interrupt_handler.c
+msp430-elf-gcc -mmcu=msp430g2553 -I../h   -c -o switches.o switches.c
+switches.c: In function 'switch_interrupt_handler':
+switches.c:48:3: warning: implicit declaration of function 'state_advance' [-Wimplicit-function-declaration]
+   state_advance(switchSM);
+   ^~~~~~~~~~~~~
+msp430-elf-gcc -mmcu=msp430g2553 -I../h   -c -o state_machines.o state_machines.c
+msp430-elf-gcc -mmcu=msp430g2553 -I../h   -c -o wdInterruptHandler.o wdInterruptHandler.c
+msp430-elf-gcc -mmcu=msp430g2553 -I../h   -c -o state_advance-c.o state_advance-c.c
+msp430-elf-gcc -mmcu=msp430g2553 -I../h -L/opt/ti/msp430_gcc/include -o button-c.elf main.o led.o buzzer.o interrupt_handler.o switches.o state_machines.o wdInterruptHandler.o state_advance-c.o ../lib/libTimer.a
+msp430-elf-as   -o state_advance-s.o state_advance-s.s
+msp430-elf-gcc -mmcu=msp430g2553 -I../h -L/opt/ti/msp430_gcc/include -o button-s.elf main.o led.o buzzer.o interrupt_handler.o switches.o state_machines.o wdInterruptHandler.o state_advance-s.o ../lib/libTimer.a
+state_advance-s.o: In function `case2':
+(.text+0x28): undefined reference to `btn_tree'
+collect2: error: ld returned 1 exit status
+make: *** [Makefile:19: button-s.elf] Error 1

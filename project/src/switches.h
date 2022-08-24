@@ -11,14 +11,8 @@
 void switch_init();
 void switch_interrupt_handler();
 
-extern int sw1_status;
-extern int sw2_status;
-extern int sw3_status;
-extern int sw4_status;
-
-extern int sw1_press_state;
-extern int sw2_press_state;
-extern int sw3_press_state;
-extern int sw4_press_state;
-
+extern char sw1_curr_stat;
+extern char sw2_curr_stat;
+extern char sw3_curr_stat;
+extern char sw4_curr_stat;
 #endif 

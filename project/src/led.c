@@ -29,7 +29,7 @@ void led_update()
 
 void r_on(int on)
 {
-  if(on)
+  if (on)
     {
       P1OUT |= LED_RED;
      
